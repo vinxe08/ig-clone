@@ -30,7 +30,7 @@ async function SignInPage() {
               <h1 className='absolute left-20 top-[-30px] bg-white p-4'>or</h1>
             </div>
             {/* Instagram Provider (TODO: Add this functionality) */}
-            <SignUpComponent provider={providers?.facebook} icon={instagramLogo} />
+            <SignUpComponent provider={providers?.instagram} icon={instagramLogo} />
           </div>
         </div>
         <div className='flex items-center justify-center bg-white border py-5'>

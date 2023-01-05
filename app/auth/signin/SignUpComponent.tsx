@@ -1,7 +1,6 @@
 'use client'
-import { getProviders } from 'next-auth/react'
+
 import { signIn } from "next-auth/react"
-import { useEffect } from 'react';
 import Lottie from 'lottie-react'
 
 type Props = {
