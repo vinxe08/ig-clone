@@ -14,13 +14,13 @@ function SignUpComponent({provider, icon}: Props) {
     <div>
       <div>
         <button 
-          onClick={() => signIn(provider.id , {
+          onClick={() => signIn(provider?.id , {
           callbackUrl: process.env.VERCEL_URL || "http://localhost:3000" })}
           className='text-blue-900 font-semibold flex items-center space-x-2'>
           <div className='h-10 w-10'>
             <Lottie animationData={icon} loop={true}/>
           </div>
-          <p>Sign in with {provider.name}</p>
+          <p>Sign in with {provider?.name}</p>
         </button>
       </div>
     </div> 
