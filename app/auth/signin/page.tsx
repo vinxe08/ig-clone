@@ -4,10 +4,17 @@ import Image from 'next/image';
 import instagramLogo from '../../../public/instagram-icon-animate.json'
 import facebookIcon from '../../../public/facebook-icon.json'
 import Wallpaper from './Wallpaper';
+import LoadingAnimation from '../../LoadingAnimation';
 
 async function SignInPage() {
   const providers = await getProviders();
   console.log("Providers: ",providers)
+
+  if(!providers){
+    return (
+      <LoadingAnimation />
+    )
+  }
 
   return (
     <div className='h-screen w-screen flex flex-row-reverse justify-center p-[43px] pb-16 bg-gray-50'>
