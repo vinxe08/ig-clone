@@ -9,6 +9,7 @@ type Props = {
 }
 
 function SignUpComponent({provider, icon}: Props) {
+  console.log(provider)
 
   return (
     <div>

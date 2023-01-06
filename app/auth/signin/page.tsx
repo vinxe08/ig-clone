@@ -7,6 +7,7 @@ import Wallpaper from './Wallpaper';
 
 async function SignInPage() {
   const providers = await getProviders();
+  console.log("Providers: ",providers)
 
   return (
     <div className='h-screen w-screen flex flex-row-reverse justify-center p-[43px] pb-16 bg-gray-50'>
