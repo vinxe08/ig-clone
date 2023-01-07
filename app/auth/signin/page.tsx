@@ -7,7 +7,6 @@ import Wallpaper from './Wallpaper';
 
 async function SignInPage() {
   const providers = await getProviders();
-  console.log("Providers: ",providers)
 
   return (
     <div className='h-screen w-screen flex flex-row-reverse justify-center p-[43px] pb-16 bg-gray-50'>
@@ -25,13 +24,19 @@ async function SignInPage() {
           </div>
           <div className='flex flex-col '>
             {/* Facebook Provider */}
-            <SignUpComponent provider={providers?.facebook} icon={facebookIcon} />
+            {/* <SignUpComponent provider={providers?.facebook} icon={facebookIcon} /> */}
 
-            <div className='border-t-[1.5px] relative my-7'>
-              <h1 className='absolute left-20 top-[-30px] bg-white p-4'>or</h1>
-            </div>
             {/* Instagram Provider (TODO: Add this functionality) */}
-            <SignUpComponent provider={providers?.instagram} icon={instagramLogo} />
+            {/* <SignUpComponent provider={providers?.instagram} icon={instagramLogo} /> */}
+            {Object.values(providers!).map(provider => (
+              <>
+              <SignUpComponent provider={provider} />
+              {provider.name === 'Facebook' ? 
+                <div className='border-t-[1.5px] relative my-7'>
+                  <h1 className='absolute left-20 top-[-30px] bg-white p-4'>or</h1>
+                </div> : null}
+              </>
+            ))}
           </div>
         </div>
         <div className='flex items-center justify-center bg-white border py-5'>
