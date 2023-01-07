@@ -1,3 +1,5 @@
+'use client'
+
 import { signIn } from "next-auth/react"
 import Lottie from 'lottie-react'
 
@@ -7,6 +9,7 @@ type Props = {
 }
 
 function SignUpComponent({provider, icon}: Props) {
+  console.log("Provider: ", provider)
 
   return (
     <div>
