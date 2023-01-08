@@ -1,5 +1,3 @@
-'use client'
-
 import { signIn } from "next-auth/react"
 import Lottie from 'lottie-react'
 import instagramLogo from '../../../public/instagram-icon-animate.json'
@@ -10,7 +8,6 @@ type Props = {
 }
 
 function SignUpComponent({provider}: Props) {
-  console.log("Provider: ", provider)
 
   return (
     <div>

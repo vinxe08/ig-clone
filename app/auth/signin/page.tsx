@@ -3,14 +3,8 @@ import SignUpComponent from './SignUpComponent'
 import Image from 'next/image';
 import Wallpaper from './Wallpaper';
 
-async function getAllProviders() {
-  const providers = await getProviders();
-
-  return providers
-}
-
 async function SignInPage() {
-  const providers = await getAllProviders();
+  const providers = await getProviders();
 
   return (
     <div className='h-screen w-screen flex flex-row-reverse justify-center p-[43px] pb-16 bg-gray-50'>
