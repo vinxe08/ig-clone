@@ -2,9 +2,12 @@ import { getProviders } from 'next-auth/react'
 import SignUpComponent from './SignUpComponent'
 import Image from 'next/image';
 import Wallpaper from './Wallpaper';
+import instagramLogo from '../../../public/instagram-icon-animate.json'
+import facebookIcon from '../../../public/facebook-icon.json'
+import { facebookProvider, instagramProvider } from './MockProvider' // Mock Provider
 
 async function SignInPage() {
-  const providers = await getProviders();
+  const providers = await getProviders(); // This is null when deploying. Use Mock Provider
 
   return (
     <div className='h-screen w-screen flex flex-row-reverse justify-center p-[43px] pb-16 bg-gray-50'>
@@ -23,25 +26,14 @@ async function SignInPage() {
           <div className='flex flex-col '>
 
             {/* Facebook Provider */}
-            {/* <SignUpComponent provider={providers?.facebook} icon={facebookIcon} /> */}
+            <SignUpComponent provider={facebookProvider} icon={facebookIcon} />
 
-            {/* <div className='border-t-[1.5px] relative my-7'>
+            <div className='border-t-[1.5px] relative my-7'>
               <h1 className='absolute left-20 top-[-30px] bg-white p-4'>or</h1>
-            </div> */}
+            </div>
 
-            {/* Instagram Provider (TODO: Add this functionality) */}
-            {/* <SignUpComponent provider={providers?.instagram} icon={instagramLogo} /> */}
-
-            {/* TODO: Error in provider. Provider is null when in deployment */}
-            {Object.values(providers!).map(provider => (
-              <>
-              <SignUpComponent provider={provider} />
-              {provider.name === 'Facebook' ? 
-                <div className='border-t-[1.5px] relative my-7'>
-                  <h1 className='absolute left-20 top-[-30px] bg-white p-4'>or</h1>
-                </div> : null}
-              </>
-            ))}
+            {/* Instagram Provider */}
+            <SignUpComponent provider={instagramProvider} icon={instagramLogo} />
           </div>
         </div>
         <div className='flex items-center justify-center bg-white border py-5'>
