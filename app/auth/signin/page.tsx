@@ -1,12 +1,16 @@
 import { getProviders } from 'next-auth/react'
 import SignUpComponent from './SignUpComponent'
 import Image from 'next/image';
-import instagramLogo from '../../../public/instagram-icon-animate.json'
-import facebookIcon from '../../../public/facebook-icon.json'
 import Wallpaper from './Wallpaper';
 
-async function SignInPage() {
+async function getAllProviders() {
   const providers = await getProviders();
+
+  return providers
+}
+
+async function SignInPage() {
+  const providers = await getAllProviders();
 
   return (
     <div className='h-screen w-screen flex flex-row-reverse justify-center p-[43px] pb-16 bg-gray-50'>
@@ -23,11 +27,18 @@ async function SignInPage() {
             />
           </div>
           <div className='flex flex-col '>
+
             {/* Facebook Provider */}
             {/* <SignUpComponent provider={providers?.facebook} icon={facebookIcon} /> */}
 
+            {/* <div className='border-t-[1.5px] relative my-7'>
+              <h1 className='absolute left-20 top-[-30px] bg-white p-4'>or</h1>
+            </div> */}
+
             {/* Instagram Provider (TODO: Add this functionality) */}
             {/* <SignUpComponent provider={providers?.instagram} icon={instagramLogo} /> */}
+
+            {/* TODO: Error in provider. Provider is null when in deployment */}
             {Object.values(providers!).map(provider => (
               <>
               <SignUpComponent provider={provider} />
