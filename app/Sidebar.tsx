@@ -5,8 +5,27 @@ import { signOut } from "next-auth/react"
 import { useRecoilState } from 'recoil'
 import { modalState } from '../atoms/postAtom'
 
-function Sidebar() {
+import { useRouter } from 'next/navigation';
+
+function Sidebar({session}: any) {
   const [isOpen, setIsOpen] = useRecoilState(modalState) // For Modal
+  const router = useRouter()
+
+  const openModal = (e:any) => {
+    if(session) {
+      setIsOpen(true)
+    } else {
+      router.push("/auth/signin")
+    }
+  }
+
+  const logButton = () => {
+    if(session) {
+      signOut()
+    } else {
+      router.push("/auth/signin")
+    }
+  }
 
   return (
     <div className='hidden fixed top-0 left-0 md:flex flex-col items-center w-[73px] min-h-screen border-r py-[33px] xl:items-start xl:w-[245px] xl:px-6'>
@@ -27,7 +46,7 @@ function Sidebar() {
         <Icons src="/direction.png" title='Messages'  />
         <Icons src="/heart.png" title='Notifications'  />
         <div 
-          onClick={() => setIsOpen(true)}
+          onClick={openModal}
           className='w-full flex-shrink-0 flex justify-center xl:justify-start p-2 hover:bg-gray-200 rounded-full transition cursor-pointer hover:transform hover:scale-105 space-x-5 -ml-2 -mt-3'>
             <Image 
               src="/plus.png"
@@ -40,7 +59,7 @@ function Sidebar() {
             </div>
         </div>
         <div 
-          onClick={() => signOut()}
+          onClick={logButton}
           className='flex-shrink-0 flex justify-center xl:justify-start p-2 hover:bg-gray-200 rounded-full transition cursor-pointer hover:transform hover:scale-105 space-x-5 -ml-2 -mt-3 w-full'>
           <div 
             className='cursor-pointer flex-shrink-0 relative h-[23px] w-[25px] bg-gray-300 rounded-full'>

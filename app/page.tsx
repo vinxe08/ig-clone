@@ -1,4 +1,3 @@
-import Post from './PostCard'
 import { connectToDatabase } from '../util/mongodb'
 import { Providers } from './providers'
 import { unstable_getServerSession } from 'next-auth/next'
@@ -16,8 +15,8 @@ async function Home() {
   return (
     <Providers session={session}>
       <div className='flex items-center justify-center pt-[26px] pb-16 bg-gray-50'>
-        <SideBar />
-        <Posts posts={posts} session={session}/>
+        <SideBar session={session}/>
+        <Posts posts={posts}/>
       </div>
     </Providers>
   )
