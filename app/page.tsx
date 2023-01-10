@@ -6,6 +6,7 @@ import { unstable_getServerSession } from 'next-auth/next'
 import SideBar from './Sidebar'
 import StorySection from './StorySection'
 import PostList from './PostList'
+import { useRouter } from 'next/router'
 
 type IProps = {
   posts: Post[]
@@ -18,6 +19,11 @@ async function Home() {
   const posts = await db.collection("posts").find().sort({ timestamp: -1 }).toArray();
 
   const session = await unstable_getServerSession();
+  const router = useRouter()
+
+  if(!session) {
+    router.push("auth/signin")
+  }
 
   return (
     <Providers session={session}>
