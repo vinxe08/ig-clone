@@ -10,6 +10,7 @@ type Props = {
 
 function SignUpComponent({provider, icon}: Props) {
 
+  // TODO: Create new app and add facebook authentication. Try this igbuild-clone(meta.developers) app 
   return (
     <div>
       <div>
