@@ -1,11 +1,9 @@
 import Post from './PostCard'
-import Modal from '../app/Modal/Modal'
 import { connectToDatabase } from '../util/mongodb'
 import { Providers } from './providers'
 import { unstable_getServerSession } from 'next-auth/next'
 import SideBar from './Sidebar'
-import StorySection from './StorySection'
-import PostList from './PostList'
+import Posts from './Posts'
 
 async function Home() {
 
@@ -19,11 +17,7 @@ async function Home() {
     <Providers session={session}>
       <div className='flex items-center justify-center pt-[26px] pb-16 bg-gray-50'>
         <SideBar />
-        <div className='space-y-6'>
-          <StorySection />
-          <PostList initialPosts={posts}/>
-          <Modal />
-        </div>
+        <Posts posts={posts} session={session}/>
       </div>
     </Providers>
   )
