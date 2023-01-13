@@ -1,13 +1,16 @@
 "use client";
 import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import AddPost from './AddPost'
 import { modalState } from '../../atoms/postAtom'
 import { useRecoilState } from 'recoil'
+import { loginModalState } from '../../atoms/loginAtom';
+import LoginModal from './LoginModal';
 
 function Modal() {
   const [isOpen, setIsOpen] = useRecoilState(modalState)
+  const [modalType, setModalType] = useRecoilState(loginModalState)
 
   const setModal = () => {
     setIsOpen(false)
@@ -52,7 +55,7 @@ function Modal() {
             leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
           >
             <div className='inline-block bg-white rounded-xl  shadow-xl transform transition-all w-[21.65rem]'>
-              <AddPost />
+              {modalType === "Post" ? <AddPost /> : <LoginModal />}
             </div>
           </Transition.Child>
         </div>

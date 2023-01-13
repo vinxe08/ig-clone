@@ -6,16 +6,23 @@ import { useRecoilState } from 'recoil'
 import { modalState } from '../atoms/postAtom'
 
 import { useRouter } from 'next/navigation';
+import { loginModalState } from '../atoms/loginAtom'
 
 function Sidebar({session}: any) {
   const [isOpen, setIsOpen] = useRecoilState(modalState) // For Modal
+  const [modalType, setModalType] = useRecoilState(loginModalState)
   const router = useRouter()
 
   const openModal = (e:any) => {
     if(session) {
       setIsOpen(true)
+      setModalType("Post")
     } else {
-      router.push("/auth/signin")
+      setModalType("Login")
+      setIsOpen(true)
+      setTimeout(() => {
+        router.push("/auth/signin")
+      }, 2000)
     }
   }
 
@@ -23,7 +30,11 @@ function Sidebar({session}: any) {
     if(session) {
       signOut()
     } else {
-      router.push("/auth/signin")
+      setModalType("Login")
+      setIsOpen(true)
+      setTimeout(() => {
+        router.push("/auth/signin")
+      }, 2000)
     }
   }
 
